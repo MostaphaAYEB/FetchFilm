@@ -1,1 +1,2 @@
 # FetchFilm
+Ce projet, réalisé dans le cadre du module 4.10, a pour objectif de concevoir un clone fonctionnel de l'interface Netflix en utilisant JavaScript.L'application permettra aux utilisateurs de parcourir les tendances actuelles, de naviguer par catégories de films et de consulter les détails des contenus. Ce développement vise principalement à valider la maîtrise de l'architecture front-end, la gestion des requêtes asynchrones et la manipulation avancée du DOM pour recréer une expérience utilisateur fluide et immersive proche de la plateforme originale.
