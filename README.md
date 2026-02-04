@@ -17,3 +17,4 @@ La bannière : Une section principale immersive affichant le film "à la une" av
 Rails de contenu : Des carrousels avec les films par catégories.
 
 Barre de Navigation : Un menu supérieur avec le logo
+=======
