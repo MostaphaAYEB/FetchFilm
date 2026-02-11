@@ -19,7 +19,7 @@ function Navbar() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <h1 className="text-red-600 text-3xl font-bold cursor-pointer">
-            NETFLIX
+            FETCHFILM
           </h1>
           <ul className="hidden md:flex space-x-6 text-gray-300">
             <li className="hover:text-white cursor-pointer">Accueil</li>
