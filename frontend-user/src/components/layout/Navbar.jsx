@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from '../common/SearchBar';
+import CartButton from '../common/CartButton';
+import moviesData from '../../data/movies.json';
 
-function Navbar() {
+function Navbar({ cartItems = [], removeFromCart }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -29,7 +31,10 @@ function Navbar() {
         </div>
 
         <div className="flex items-center space-x-4 text-white">
-          <SearchBar />
+          <SearchBar movies={moviesData} />
+          
+          <CartButton cartItems={cartItems} removeFromCart={removeFromCart} />
+          
           <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center font-bold cursor-pointer">
             U
           </div>
