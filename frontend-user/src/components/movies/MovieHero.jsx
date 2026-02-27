@@ -1,12 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
 
 function MovieHero({ movie }) {
+  const navigate = useNavigate();
+
   if (!movie) return null;
+
+  const handleMoreInfo = () => {
+    navigate(`/movie/${movie.id}`);
+  };
 
   return (
     <div className="relative h-[80vh] w-full text-white">
-      {/* Background Images & Gradients */}
       <div className="absolute inset-0">
         <img
           src={movie.backdrop}
@@ -17,7 +23,6 @@ function MovieHero({ movie }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
       </div>
 
-      {/* Content */}
       <div className="relative container mx-auto px-4 h-full flex items-center">
         <div className="max-w-2xl pt-20">
           <h1 className="text-6xl font-bold mb-4 drop-shadow-lg">
@@ -36,8 +41,7 @@ function MovieHero({ movie }) {
           </p>
 
           <div className="flex space-x-4">
-            <Button size="lg">Lecture</Button>
-            <Button variant="secondary" size="lg">
+            <Button variant="secondary" size="lg" onClick={handleMoreInfo}>
               Plus d’infos
             </Button>
           </div>

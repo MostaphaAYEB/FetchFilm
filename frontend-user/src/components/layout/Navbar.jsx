@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import SearchBar from '../common/SearchBar';
 import CartButton from '../common/CartButton';
 import moviesData from '../../data/movies.json';
@@ -12,6 +13,9 @@ function Navbar({ cartItems = [], removeFromCart }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinkClass = ({ isActive }) =>
+    isActive ? 'text-red-600 font-bold' : 'text-gray-300 hover:text-white transition-colors';
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
@@ -20,24 +24,31 @@ function Navbar({ cartItems = [], removeFromCart }) {
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-8">
-          <h1 className="text-red-600 text-3xl font-bold cursor-pointer">
-            FETCHFILM
-          </h1>
-          <ul className="hidden md:flex space-x-6 text-gray-300">
-            <li className="hover:text-white cursor-pointer">Accueil</li>
-            <li className="hover:text-white cursor-pointer">Séries</li>
-            <li className="hover:text-white cursor-pointer">Films</li>
+          <Link to="/">
+            <h1 className="text-red-600 text-3xl font-bold cursor-pointer">
+              FETCHFILM
+            </h1>
+          </Link>
+          <ul className="hidden md:flex space-x-6">
+            <li>
+              <NavLink to="/" className={navLinkClass}>
+                Accueil
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/my-rentals" className={navLinkClass}>
+                Mes locations
+              </NavLink>
+            </li>
           </ul>
         </div>
 
         <div className="flex items-center space-x-4 text-white">
           <SearchBar movies={moviesData} />
-          
           <CartButton cartItems={cartItems} removeFromCart={removeFromCart} />
-          
-          <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center font-bold cursor-pointer">
-            U
-          </div>
+          <Link to="/login" className="bg-red-600 px-4 py-1.5 rounded font-bold hover:bg-red-700 transition-colors">
+            Connexion
+          </Link>
         </div>
       </div>
     </nav>

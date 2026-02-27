@@ -1,33 +1,56 @@
 import React from 'react';
 
+const footerLinks = {
+  "À propos": ["Qui sommes-nous", "Emplois", "Presse"],
+  "Aide": ["FAQ", "Centre d'aide", "Compte", "Contact"],
+  "Légal": ["Confidentialité", "Conditions d'utilisation", "Mentions légales"],
+  "Réseaux": ["Facebook", "Twitter", "Instagram", "YouTube"]
+};
+
+const socialIcons = [
+  { name: "Facebook", logo: "f" },
+  { name: "Twitter", logo: "X" },
+  { name: "Instagram", logo: "ig" },
+  { name: "YouTube", logo: "yt" }
+];
+
 function Footer() {
   return (
-    <footer className="bg-black text-gray-500 py-12 px-4 border-t border-gray-800 mt-12">
-      <div className="container mx-auto text-center">
-        <p className="mb-4">Des questions ? Appelez le 0800-000-000</p>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-left">
-          <ul>
-            <li>FAQ</li>
-            <li>Presse</li>
-          </ul>
-          <ul>
-            <li>Centre d’aide</li>
-            <li>Recrutement</li>
-          </ul>
-          <ul>
-            <li>Compte</li>
-            <li>Mentions légales</li>
-          </ul>
-          <ul>
-            <li>Media Center</li>
-            <li>Confidentialité</li>
-          </ul>
+    <footer className="bg-black border-t border-gray-800 mt-16">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          {Object.entries(footerLinks).map(([category, links]) => (
+            <div key={category}>
+              <h3 className="font-bold mb-4 text-gray-300">{category}</h3>
+              <ul className="space-y-2">
+                {links.map((link, index) => (
+                  <li key={index}>
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <p className="mt-8 text-xs">
-          2026 Netflix Clone - Projet Pédagogique
-        </p>
+        <div className="flex justify-center space-x-6 mb-8">
+          {socialIcons.map((icon, index) => (
+            <a 
+              key={index}
+              href="#" 
+              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors" 
+              aria-label={icon.name}
+            >
+              <span className="text-xl text-white">{icon.logo}</span>
+            </a>
+          ))}
+        </div>
+
+        <div className="text-center text-gray-500 text-sm">
+          <p>© 2026 Netflix Clone - Projet pédagogique IUT Informatique - Limoges</p>
+        </div>
       </div>
     </footer>
   );

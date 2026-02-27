@@ -22,10 +22,10 @@ function MovieCarousel({ title, movies, onAddToCart }) {
   };
 
   return (
-    <section className="py-8 relative group px-4">
+    <section className="py-8 relative group/carousel px-4">
       <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
       {canScrollLeft && (
-        <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 z-10 bg-black/70 p-2 rounded-full text-white hover:bg-white hover:text-black transition opacity-0 group-hover:opacity-100 h-full">
+        <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 z-10 bg-black/70 p-2 rounded-full text-white hover:bg-white hover:text-black transition opacity-0 group-hover/carousel:opacity-100 h-full">
           &lt;
         </button>
       )}
@@ -37,7 +37,7 @@ function MovieCarousel({ title, movies, onAddToCart }) {
         ))}
       </div>
       {canScrollRight && (
-        <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 z-10 bg-black/70 p-2 rounded-full text-white hover:bg-white hover:text-black transition opacity-0 group-hover:opacity-100 h-full">
+        <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 z-10 bg-black/70 p-2 rounded-full text-white hover:bg-white hover:text-black transition opacity-0 group-hover/carousel:opacity-100 h-full">
           &gt;
         </button>
       )}
