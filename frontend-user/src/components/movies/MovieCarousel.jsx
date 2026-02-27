@@ -22,22 +22,35 @@ function MovieCarousel({ title, movies, onAddToCart }) {
   };
 
   return (
-    <section className="py-8 relative group/carousel px-4">
+    <section className="py-8 relative group/carousel">
       <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+      
       {canScrollLeft && (
-        <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 z-10 bg-black/70 p-2 rounded-full text-white hover:bg-white hover:text-black transition opacity-0 group-hover/carousel:opacity-100 h-full">
+        <button 
+          onClick={() => scroll("left")} 
+          className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-20 bg-black/70 p-3 rounded-full text-white hover:bg-red-600 transition opacity-0 group-hover/carousel:opacity-100 shadow-xl"
+        >
           &lt;
         </button>
       )}
-      <div ref={scrollContainerRef} className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4" style={{ scrollbarWidth: "none" }}>
+
+      <div 
+        ref={scrollContainerRef} 
+        className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4" 
+        style={{ scrollbarWidth: "none" }}
+      >
         {movies.map((movie) => (
-          <div key={movie.id} className="shrink-0 w-48">
+          <div key={movie.id} className="shrink-0">
             <MovieCard movie={movie} onAddToCart={onAddToCart} />
           </div>
         ))}
       </div>
+
       {canScrollRight && (
-        <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 z-10 bg-black/70 p-2 rounded-full text-white hover:bg-white hover:text-black transition opacity-0 group-hover/carousel:opacity-100 h-full">
+        <button 
+          onClick={() => scroll("right")} 
+          className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-20 bg-black/70 p-3 rounded-full text-white hover:bg-red-600 transition opacity-0 group-hover/carousel:opacity-100 shadow-xl"
+        >
           &gt;
         </button>
       )}

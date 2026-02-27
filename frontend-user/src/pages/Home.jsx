@@ -24,13 +24,13 @@ function Home() {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white font-sans">
+    <div className="bg-black min-h-screen text-white font-sans overflow-x-hidden">
       <Navbar cartItems={cartItems} removeFromCart={removeFromCart} />
       
       <MovieHero movie={featuredMovie} />
       
-      <div className="-mt-32 relative z-10 space-y-4 pb-12">
-        <div className="container mx-auto relative z-20 pt-8">
+      <div className="container mx-auto px-4 relative z-10 -mt-32 pb-12">
+        <div className="relative z-20 pt-8 mb-8">
           <MovieFilter 
             movies={allMovies} 
             onFilter={setFilteredMovies} 

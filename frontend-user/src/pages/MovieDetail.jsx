@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
@@ -8,10 +8,41 @@ import moviesData from '../data/movies.json';
 function MovieDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [notification, setNotification] = useState(null);
 
   const movie = moviesData.find((m) => m.id === parseInt(id));
 
-  
+  const handleRent = () => {
+    const user = localStorage.getItem('user');
+    
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    const existingRentals = JSON.parse(localStorage.getItem('rentals') || '[]');
+    const alreadyRented = existingRentals.some((rental) => rental.id === movie.id);
+
+    if (alreadyRented) {
+      setNotification({ type: 'error', message: 'Vous avez déjà loué ce film' });
+      return;
+    }
+
+    const rental = {
+      ...movie,
+      rentalDate: new Date().toISOString(),
+      expiryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
+    };
+
+    const updatedRentals = [...existingRentals, rental];
+    localStorage.setItem('rentals', JSON.stringify(updatedRentals));
+
+    setNotification({ type: 'success', message: 'Film loué avec succès !' });
+
+    setTimeout(() => {
+      navigate('/my-rentals');
+    }, 2000);
+  };
 
   if (!movie) {
     return (
@@ -26,6 +57,14 @@ function MovieDetail() {
   return (
     <div className="bg-black min-h-screen text-white font-sans">
       <Navbar />
+
+      {notification && (
+        <div className={`fixed top-20 right-4 px-6 py-3 rounded-lg shadow-xl z-50 ${
+          notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        }`}>
+          {notification.message}
+        </div>
+      )}
       
       <div className="relative h-[60vh] w-full">
         <img 
@@ -58,6 +97,11 @@ function MovieDetail() {
           <p className="text-lg leading-relaxed text-gray-300 max-w-2xl">
             {movie.description}
           </p>
+
+          <Button size="lg" onClick={handleRent} className="mb-8">
+            Louer pour {movie.price}€
+          </Button>
+
         </div>
       </div>
 
